@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pertemuan2/helper/my_color.dart';
+import 'package:happy_store/helper/my_color.dart';
 
 class MyStyle {
   static TextStyle labelFormText = GoogleFonts.poppins(

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pertemuan2/helper/my_color.dart';
-import 'package:pertemuan2/pages/login_screen.dart';
-import 'package:pertemuan2/pages/profile_page.dart';
-import 'package:pertemuan2/pages/signup_page.dart';
-import 'package:pertemuan2/pages/splash_screen.dart';
+import 'package:happy_store/helper/my_color.dart';
+import 'package:happy_store/pages/login_screen.dart';
+import 'package:happy_store/pages/profile_page.dart';
+import 'package:happy_store/pages/signup_page.dart';
+import 'package:happy_store/pages/splash_screen.dart';
 
 void main() {
   runApp(MyApp());

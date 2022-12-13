@@ -1,4 +1,4 @@
-package com.example.pertemuan2
+package com.example.happy_store
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,6 +1,6 @@
 {
-    "name": "pertemuan2",
-    "short_name": "pertemuan2",
+    "name": "happy_store",
+    "short_name": "happy_store",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
