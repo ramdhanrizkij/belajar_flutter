@@ -109,7 +109,9 @@ class LoginPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                     color: MyColor.primaryColor),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, "/profile");
+                  },
                   child: Text(
                     "Sign In",
                     style: MyStyle.labelFormText.copyWith(

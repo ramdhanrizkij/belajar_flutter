@@ -13,6 +13,19 @@ class MyStyle {
       fontWeight: FontWeight.w500,
       color: MyColor.primaryTextColor);
 
+
+  static TextStyle appBarTitle = GoogleFonts.poppins(
+    fontSize:22,
+    fontWeight: FontWeight.w400,
+    color: const Color(0xFF191919),
+  );
+
+  static TextStyle profileMenuText = GoogleFonts.poppins(
+    fontWeight: FontWeight.w600,
+    fontSize: 12,
+    color: const Color(0xFF032630),
+  );
+
   static TextStyle subTitleText =
       GoogleFonts.poppins(fontSize: 14, color: MyColor.secondaryTextColor);
 }
