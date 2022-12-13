@@ -2,21 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:happy_store/helper/my_color.dart';
 import 'package:happy_store/helper/my_style.dart';
+import 'package:happy_store/providers/auth_provider.dart';
 import 'package:happy_store/widgets/product_card.dart';
+import 'package:provider/provider.dart';
 
-class HomePage extends StatelessWidget {
+import '../../models/user_model.dart';
+
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
-  Widget header() {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+  
+  Widget header(UserModel user) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text("Hello Shinta,", style: MyStyle.titleText),
-            Text("Mau belanja apa hari ini ?", style: MyStyle.subTitleText)
-          ],
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Hello ${user.name},", style: MyStyle.titleText),
+              Text("Mau belanja apa hari ini ?", style: MyStyle.subTitleText)
+            ],
+          ),
         ),
         const CircleAvatar(
           backgroundImage: AssetImage('assets/photo_profile.png'),
@@ -211,13 +224,17 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
+
     return Scaffold(
         body: SafeArea(
       child: SingleChildScrollView(
           child: Padding(
         padding: EdgeInsets.all(16),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          header(),
+          header(user),
           searchProduct(),
           categories(),
           trendingSalesTitle(),
