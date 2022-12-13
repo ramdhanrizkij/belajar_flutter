@@ -110,7 +110,7 @@ class LoginPage extends StatelessWidget {
                     color: MyColor.primaryColor),
                 child: TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, "/profile");
+                    Navigator.pushNamed(context, "/home");
                   },
                   child: Text(
                     "Sign In",

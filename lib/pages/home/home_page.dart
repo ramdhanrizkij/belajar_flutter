@@ -1,0 +1,229 @@
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:happy_store/helper/my_color.dart';
+import 'package:happy_store/helper/my_style.dart';
+import 'package:happy_store/widgets/product_card.dart';
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  Widget header() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("Hello Shinta,", style: MyStyle.titleText),
+            Text("Mau belanja apa hari ini ?", style: MyStyle.subTitleText)
+          ],
+        ),
+        const CircleAvatar(
+          backgroundImage: AssetImage('assets/photo_profile.png'),
+          radius: 25,
+        ),
+      ],
+    );
+  }
+
+  Widget searchProduct() {
+    return Container(
+      margin: const EdgeInsets.only(top: 20),
+      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+      height: 55,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: MyColor.gray,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const Icon(Icons.search, size: 24),
+          const SizedBox(
+            width: 12,
+          ),
+          Expanded(
+            child: TextFormField(
+              style: GoogleFonts.poppins(
+                  fontSize: 14, color: MyColor.secondaryTextColor),
+              decoration: InputDecoration.collapsed(
+                  hintText: 'Search Product',
+                  hintStyle: GoogleFonts.poppins(
+                      fontSize: 14, fontWeight: FontWeight.normal)),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget categories() {
+    return Container(
+      margin: EdgeInsets.only(
+        top: 12,
+      ),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 8,
+                vertical: 6,
+              ),
+              margin: EdgeInsets.only(right: 16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: MyColor.primaryColor,
+              ),
+              child: Text(
+                'Featured',
+                style: MyStyle.subTitleText.copyWith(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.white),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 8,
+                vertical: 6,
+              ),
+              margin: EdgeInsets.only(right: 16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: MyColor.secondaryTextColor,
+                ),
+                color: Colors.transparent,
+              ),
+              child: Text(
+                'Computer',
+                style: MyStyle.subTitleText.copyWith(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 8,
+                vertical: 6,
+              ),
+              margin: EdgeInsets.only(right: 16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: MyColor.secondaryTextColor,
+                ),
+                color: Colors.transparent,
+              ),
+              child: Text(
+                'Headsets',
+                style: MyStyle.subTitleText.copyWith(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 8,
+                vertical: 6,
+              ),
+              margin: EdgeInsets.only(right: 16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: MyColor.secondaryTextColor,
+                ),
+                color: Colors.transparent,
+              ),
+              child: Text(
+                'Speaker',
+                style: MyStyle.subTitleText.copyWith(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 8,
+                vertical: 6,
+              ),
+              margin: EdgeInsets.only(right: 16),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  color: MyColor.secondaryTextColor,
+                ),
+                color: Colors.transparent,
+              ),
+              child: Text(
+                'Accessories',
+                style: MyStyle.subTitleText.copyWith(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget trendingSalesTitle() {
+    return Container(
+      margin: EdgeInsets.only(top: 30),
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+        Text(
+          "Trending Sales",
+          style: MyStyle.titleText
+              .copyWith(fontWeight: FontWeight.bold, fontSize: 18),
+        ),
+        Text(
+          "See All",
+          style: MyStyle.subTitleText
+              .copyWith(fontSize: 14, color: MyColor.primaryColor),
+        ),
+      ]),
+    );
+  }
+
+  Widget trendingSalesProduct() {
+    return Container(
+      margin: EdgeInsets.only(top: 30),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(children: [
+          ProductCard(),
+          ProductCard(),
+          ProductCard(),
+          ProductCard(),
+          ProductCard(),
+        ]),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: SafeArea(
+      child: SingleChildScrollView(
+          child: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          header(),
+          searchProduct(),
+          categories(),
+          trendingSalesTitle(),
+          trendingSalesProduct()
+        ]),
+      )),
+    ));
+  }
+}
