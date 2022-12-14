@@ -2,12 +2,37 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:happy_store/helper/my_color.dart';
 import 'package:happy_store/helper/my_style.dart';
+import 'package:happy_store/providers/auth_provider.dart';
+import 'package:provider/provider.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
   @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController emailController = TextEditingController(text: '');
+  TextEditingController passwordController = TextEditingController(text: '');
+
+  @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    void handleLogin() {
+      if (authProvider.login(
+          email: emailController.text, password: passwordController.text)) {
+        Navigator.pushNamed(context, "/home");
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: const Text("Username atau password anda salah!"),
+          ),
+        );
+      }
+    }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -50,6 +75,7 @@ class LoginPage extends StatelessWidget {
                   ),
                   Expanded(
                     child: TextFormField(
+                      controller: emailController,
                       style: GoogleFonts.poppins(
                           fontSize: 14, color: MyColor.secondaryTextColor),
                       decoration: InputDecoration.collapsed(
@@ -87,6 +113,7 @@ class LoginPage extends StatelessWidget {
                   ),
                   Expanded(
                     child: TextFormField(
+                      controller: passwordController,
                       obscureText: true,
                       style: GoogleFonts.poppins(
                           fontSize: 14, color: MyColor.secondaryTextColor),
@@ -109,9 +136,7 @@ class LoginPage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                     color: MyColor.primaryColor),
                 child: TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/profile");
-                  },
+                  onPressed: handleLogin,
                   child: Text(
                     "Sign In",
                     style: MyStyle.labelFormText.copyWith(
@@ -134,13 +159,14 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                     GestureDetector(
-                      onTap: () => {
-                        Navigator.pushNamed(context, '/signup')
-                      },
-                      child: Text(" Daftar", style: GoogleFonts.poppins(
+                      onTap: () => {Navigator.pushNamed(context, '/signup')},
+                      child: Text(
+                        " Daftar",
+                        style: GoogleFonts.poppins(
                           fontSize: 12,
                           color: MyColor.primaryColor,
-                        ), ),
+                        ),
+                      ),
                     )
                   ],
                 ),
