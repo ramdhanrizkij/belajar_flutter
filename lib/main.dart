@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:happy_store/helper/my_color.dart';
 import 'package:happy_store/pages/home/main_home.dart';
@@ -7,6 +8,7 @@ import 'package:happy_store/pages/home/profile_page.dart';
 import 'package:happy_store/pages/signup_page.dart';
 import 'package:happy_store/pages/splash_screen.dart';
 import 'package:happy_store/providers/auth_provider.dart';
+import 'package:happy_store/providers/product_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -23,16 +25,20 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => AuthProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => ProductProvider(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         routes: {
-          '/': (context) => const SplashScreen(),
+          '/': (context) => const MainHome(),
           '/login':(context) => const LoginPage(),
           '/profile':(context)=> const ProfilePage(),
           '/signup':(context)=> const SignupPage(),
           '/home':(context) => const MainHome()
         },
+        builder: EasyLoading.init(),
       ),
     );
   }

@@ -3,12 +3,15 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:happy_store/helper/my_color.dart';
 
 import '../helper/my_style.dart';
+import '../models/product_model.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
-
+  final ProductModel product;
+  ProductCard(this.product);
+    
   @override
   Widget build(BuildContext context) {
+
     return Container(
       width: 215,
       height: 278,

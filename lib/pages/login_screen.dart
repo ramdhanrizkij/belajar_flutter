@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:happy_store/helper/my_color.dart';
 import 'package:happy_store/helper/my_style.dart';
@@ -15,22 +16,46 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController(text: '');
   TextEditingController passwordController = TextEditingController(text: '');
+  bool loading = false;
 
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
 
-    void handleLogin() {
-      if (authProvider.login(
-          email: emailController.text, password: passwordController.text)) {
+    // void handleLogin() {
+    //   if (authProvider.login(
+    //       email: emailController.text, password: passwordController.text)) {
+    //     Navigator.pushNamed(context, "/home");
+    //   } else {
+    //     ScaffoldMessenger.of(context).showSnackBar(
+    //       SnackBar(
+    //         content: const Text("Username atau password anda salah!"),
+    //       ),
+    //     );
+    //   }
+    // }
+
+    void handleLogin() async {
+      setState(() {
+        loading = true;
+      });
+      EasyLoading.show(status: 'loading...');
+      if (await authProvider.login(
+        email: emailController.text,
+        password: passwordController.text,
+      )) {
         Navigator.pushNamed(context, "/home");
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: const Text("Username atau password anda salah!"),
+          const SnackBar(
+            content: Text(
+              'Gagal Login! Mohon cek kembali email dan Password anda',
+              textAlign: TextAlign.center,
+            ),
           ),
         );
       }
+      EasyLoading.dismiss();
     }
 
     return Scaffold(
