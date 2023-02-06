@@ -150,42 +150,45 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget buttonLogout() {
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        width: double.infinity,
-        height: 44,
-        margin: const EdgeInsets.only(bottom: 12),
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-              color: const Color(0xFFE6E9EA),
-            )),
-        child: Row(
-          children: [
-            Image.asset(
-              "assets/i_logout.png",
-              width: 20,
-              height: 20,
-            ),
-            const SizedBox(
-              width: 12,
-            ),
-            Text(
-              "Keluar Akun",
-              style: MyStyle.profileMenuText,
-            )
-          ],
-        ),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+
+     Widget buttonLogout() {
+      return GestureDetector(
+        onTap: () {
+           Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+        },
+        child: Container(
+          width: double.infinity,
+          height: 44,
+          margin: const EdgeInsets.only(bottom: 12),
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(
+                color: const Color(0xFFE6E9EA),
+              )),
+          child: Row(
+            children: [
+              Image.asset(
+                "assets/i_logout.png",
+                width: 20,
+                height: 20,
+              ),
+              const SizedBox(
+                width: 12,
+              ),
+              Text(
+                "Keluar Akun",
+                style: MyStyle.profileMenuText,
+              )
+            ],
+          ),
+        ),
+      );
+    }
+    
     return Scaffold(
       appBar: AppBar(
         title: Text("My Profile", style: MyStyle.appBarTitle),

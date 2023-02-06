@@ -18,8 +18,8 @@ class ProductCard extends StatelessWidget {
       margin: EdgeInsets.only(right: 16),
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Image.asset(
-          "assets/headset_1.jpg",
+        Image.network(
+          product.thumbnail!,
           height: 160,
           width: double.infinity,
           fit: BoxFit.cover,
@@ -27,18 +27,17 @@ class ProductCard extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        Text(
-          "Beats solo3",
+        Text(product.name??"",
           style: GoogleFonts.poppins(fontWeight: FontWeight.bold, fontSize: 14),
         ),
-        Text("Wiring Beats sound",
+        Text(product.category!.name??"",
             style: MyStyle.subTitleText.copyWith(color: MyColor.secondaryTextColor)),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Text(
-              "\$199.0",
+              "\$${product.price.toString() ??0}",
               style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
             ),
             ElevatedButton(

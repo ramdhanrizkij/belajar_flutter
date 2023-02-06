@@ -10,6 +10,7 @@ class ProductModel {
   CategoryModel? category;
   DateTime? createdAt;
   DateTime? updatedAt;
+  String? thumbnail;
   List<GalleryModel>? images;
 
   ProductModel({
@@ -22,6 +23,7 @@ class ProductModel {
     this.createdAt,
     this.updatedAt,
     this.images,
+    this.thumbnail,
   });
 
   ProductModel.fromJson(Map<String, dynamic> json) {
@@ -36,6 +38,7 @@ class ProductModel {
         .toList();
     createdAt = DateTime.parse(json['created_at']);
     updatedAt = DateTime.parse(json['updated_at']);
+    thumbnail = json['thumbnail'];
   }
 
   Map<String, dynamic> toJson() {
@@ -49,6 +52,7 @@ class ProductModel {
       'images': images!.map((gallery) => gallery.toJson()).toList(),
       'created_at': createdAt.toString(),
       'updated_at': updatedAt.toString(),
+      'thumbnail': thumbnail,
     };
   }
 }
